@@ -108,7 +108,7 @@ const sendMovieLink = async (chatId, userId, movieName) => {
         return;
     }
 
-    const link = `https://moviehub24.github.io/movie?userId=${userId}&movie=${encodeURIComponent(movieName)}`;
+    const link = `https://mxhub24.github.io/movie?userId=${userId}&movie=${encodeURIComponent(movieName)}`;
     await bot.sendMessage(chatId, `🎬 Choose the quality for *${movieName}*:\n👉 [Select Quality](${link})`, {
         parse_mode: "Markdown",
         disable_web_page_preview: false
