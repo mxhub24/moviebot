@@ -7,7 +7,7 @@ require('dotenv').config();
 const bot = new TelegramBot(process.env.BOT_TOKEN, { polling: true });
 const app = express();
 
-const keepAliveUrl = 'https://api.render.com/deploy/srv-cuont7d2ng1s73eb1q10?key=L05ImFpkNgE';
+const keepAliveUrl = 'https://api.render.com/deploy/srv-cv90gffnoe9s739duva0?key=eqMxiKsfcW8';
 const keepAliveInterval = 590000;
 
 setInterval(async () => {
