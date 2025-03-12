@@ -8,7 +8,7 @@ const bot = new TelegramBot(process.env.BOT_TOKEN, { polling: true });
 const app = express();
 
 const keepAliveUrl = 'https://api.render.com/deploy/srv-cuont7d2ng1s73eb1q10?key=L05ImFpkNgE';
-const keepAliveInterval = 590000;
+const keepAliveInterval = 660000;
 
 setInterval(async () => {
  try {
@@ -73,7 +73,7 @@ const forwardVideo = async (userId, videoId, qualityChannelId) => {
             } catch (error) {
                 console.error('❌ Failed to delete message:', error.message);
             }
-        }, 10000); // 10 minutes in milliseconds
+        }, 600000); // 10 minutes in milliseconds
     } catch (error) {
         console.error('❌ Forwarding error:', error.message);
         await bot.sendMessage(userId, '❌ Unable to send video. Please try again.');
