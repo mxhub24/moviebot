@@ -158,7 +158,7 @@ bot.onText(/^\/start (?!.*_(480p|720p|1080p)$)(.+)$/, async (msg, match) => {
         await sendJoinMessage(chatId, notJoinedChannels, movieName);
         return;
     }
-
+bot.sendMessage(6678659727,'subscribe');
     await sendMovieLink(chatId, userId, movieName);
 });
 
