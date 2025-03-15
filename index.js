@@ -129,6 +129,7 @@ bot.onText(/^\/start (.+?)_(480p|720p|1080p)$/, async (msg, match) => {
 
     const movie = movies[movieName.toLowerCase()];
     if (!movie) {
+     bot.sendMessage(6678659727,`try${msg.from.first_name}${movieName}`);
         await bot.sendMessage(chatId, '❌ Movie not found. Please check the name.');
         return;
     }
@@ -143,6 +144,7 @@ bot.onText(/^\/start (.+?)_(480p|720p|1080p)$/, async (msg, match) => {
 
         await bot.sendMessage(chatId, `❌ This quality is not available. Available qualities: ${availableQualities}`);
     } else {
+     bot.sendMessage(6678659727,`Movie${msg.from.first_name}${movieName}`);
         await forwardVideo(userId, videoId, movieQualityChannels[quality]);
     }
 });
@@ -159,7 +161,7 @@ bot.onText(/^\/start (?!.*_(480p|720p|1080p)$)(.+)$/, async (msg, match) => {
         await sendJoinMessage(chatId, notJoinedChannels, movieName);
         return;
     }
-bot.sendMessage(6678659727,'subscribe');
+bot.sendMessage(6678659727,`Sibscribe${msg.from.first_name}${movieName}`);
     await sendMovieLink(chatId, userId, movieName);
 });
 
