@@ -101,20 +101,26 @@ const sendJoinMessage = async (chatId, notJoinedChannels, movieName) => {
 };
 
 // Send Movie Selection Link
+// Send Movie Selection Link with Inline Keyboard
 const sendMovieLink = async (chatId, userId, movieName) => {
-    const movie = movies[movieName.toLowerCase()];
-    if (!movie) {
+    const movieKey = movieName.toLowerCase();
+    if (!movies[movieKey]) {
         await bot.sendMessage(chatId, '❌ Movie not found. Please check the name.');
         return;
     }
 
-    const link = `https://mxhub24.github.io/movie?userId=${userId}&movie=${encodeURIComponent(movieName)}`;
-    await bot.sendMessage(chatId, `🎬 Choose the quality for *${movieName}*:\n👉 [Select Quality](${link})`, {
+    const link = `tg://resolve?domain=data1storage_bot&startapp=${encodeURIComponent(movieName)}`;
+
+    await bot.sendMessage(chatId, `🎬 Choose the quality for *${movieName}*:`, {
         parse_mode: "Markdown",
-        disable_web_page_preview: false
+        disable_web_page_preview: true,
+        reply_markup: {
+            inline_keyboard: [
+                [{ text: "🎥 Select Quality", url: link }]
+            ]
+        }
     });
 };
-
 // Handle "/start movieName_quality"
 bot.onText(/^\/start (.+?)_(480p|720p|1080p)$/, async (msg, match) => {
     const chatId = msg.chat.id;
