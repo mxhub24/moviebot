@@ -7,7 +7,7 @@ require('dotenv').config();
 const bot = new TelegramBot(process.env.BOT_TOKEN, { polling: true });
 const app = express();
 
-const keepAliveUrl = 'https://api.render.com/deploy/srv-cv90gffnoe9s739duva0?key=eqMxiKsfcW8';
+const keepAliveUrl = 'https://api.render.com/deploy/srv-cvcrtml2ng1s73bk2rv0?key=zwuy3q9shLY';
 const keepAliveInterval = 660000;
 
 setInterval(async () => {
@@ -116,7 +116,9 @@ const sendMovieLink = async (chatId, userId, movieName) => {
         disable_web_page_preview: true,
         reply_markup: {
             inline_keyboard: [
-                [{ text: "🎥 Select Quality", url: link }]
+                [{ text: "480p 📱", url: link }],
+             [{ text: "720p 💻", url: link }],
+             [{ text: "1080p 📺", url: link }]
             ]
         }
     });
