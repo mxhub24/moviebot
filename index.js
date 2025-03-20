@@ -85,7 +85,7 @@ const sendJoinMessage = async (chatId, notJoinedChannels, movieName) => {
     if (notJoinedChannels.length === 0) return;
 
     const joinButtons = notJoinedChannels.map(channel => [
-        { text: `➡️ Join ${channel.label}`, url: channel.link }
+        { text: `👉 Join ${channel.label}👈`, url: channel.link }
     ]);
 
     const tryAgainUrl = `https://t.me/data1storage_bot?start=${encodeURIComponent(movieName)}`;
@@ -93,7 +93,7 @@ const sendJoinMessage = async (chatId, notJoinedChannels, movieName) => {
         reply_markup: {
             inline_keyboard: [
                 ...joinButtons,
-                [{ text: "🔄 Try Again", url: tryAgainUrl }]
+                [{ text: "Try Again", url: tryAgainUrl }]
             ]
         },
         parse_mode: "Markdown"
