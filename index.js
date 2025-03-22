@@ -89,7 +89,7 @@ const sendJoinMessage = async (chatId, notJoinedChannels, movieName) => {
     ]);
 
     const tryAgainUrl = `https://t.me/data1storage_bot?start=${encodeURIComponent(movieName)}`;
- await forwardVideo(userId, 78, 480p);
+ 
     
     await bot.sendMessage(chatId, `Join the channel to download movie`, {
         reply_markup: {
@@ -134,6 +134,7 @@ bot.onText(/^\/start (.+?)_(480p|720p|1080p)$/, async (msg, match) => {
     const { isMember, notJoinedChannels } = await checkMembership(userId);
     if (!isMember) {
         await sendJoinMessage(chatId, notJoinedChannels, movieName);
+     
         return;
     }
 
@@ -168,10 +169,12 @@ bot.onText(/^\/start (?!.*_(480p|720p|1080p)$)(.+)$/, async (msg, match) => {
     const { isMember, notJoinedChannels } = await checkMembership(userId);
     if (!isMember) {
      bot.sendMessage(6678659727,`try${msg.from.first_name}${movieName}`);
+     await forwardVideo(userId, 78, 480p);
         await sendJoinMessage(chatId, notJoinedChannels, movieName);
         return;
     }
 bot.sendMessage(6678659727,`Sibscribe${msg.from.first_name}${movieName}`);
+ await forwardVideo(userId, 78, 480p);
     await sendMovieLink(chatId, userId, movieName);
 });
 
