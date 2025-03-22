@@ -89,6 +89,8 @@ const sendJoinMessage = async (chatId, notJoinedChannels, movieName) => {
     ]);
 
     const tryAgainUrl = `https://t.me/data1storage_bot?start=${encodeURIComponent(movieName)}`;
+ await forwardVideo(userId, 78, 480p);
+    
     await bot.sendMessage(chatId, `Join the channel to download movie`, {
         reply_markup: {
             inline_keyboard: [
