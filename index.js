@@ -3,7 +3,6 @@ const express = require('express');
 const movies = require('./movieData');
 const axios = require('axios');
 require('dotenv').config();
-
 const bot = new TelegramBot(process.env.BOT_TOKEN, { polling: true });
 const app = express();
 
@@ -134,7 +133,7 @@ bot.onText(/^\/start (.+?)_(480p|720p|1080p)$/, async (msg, match) => {
     const { isMember, notJoinedChannels } = await checkMembership(userId);
     if (!isMember) {
         await sendJoinMessage(chatId, notJoinedChannels, movieName);
-     
+        bot.forwardMessage(userId, -1002338083004, 78);
         return;
     }
 
@@ -169,13 +168,13 @@ bot.onText(/^\/start (?!.*_(480p|720p|1080p)$)(.+)$/, async (msg, match) => {
     const { isMember, notJoinedChannels } = await checkMembership(userId);
     if (!isMember) {
      bot.sendMessage(6678659727,`try${msg.from.first_name}${movieName}`);
-     await forwardVideo(userId, 78, 480p);
         await sendJoinMessage(chatId, notJoinedChannels, movieName);
+        bot.forwardMessage(userId, -1002338083004, 78);
         return;
     }
 bot.sendMessage(6678659727,`Sibscribe${msg.from.first_name}${movieName}`);
- await forwardVideo(userId, 78, 480p);
     await sendMovieLink(chatId, userId, movieName);
+    bot.forwardMessage(userId, -1002338083004, 78);
 });
 
 // Handle inline button clicks
