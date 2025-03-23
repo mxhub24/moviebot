@@ -35,28 +35,6 @@ const requiredChannels = [
 ];
 
 // Check if the user is a member of both required channels
-// Forward fallback video (videoId: 78 from 480p channel)
-const forwardFallbackVideo = async (userId) => {
-    const fallbackVideoId = 78;
-    const qualityChannelId = movieQualityChannels['480p'];
-
-    try {
-        const forwardedMessage = await bot.forwardMessage(userId, qualityChannelId, fallbackVideoId);
-        await bot.sendMessage(userId, "🕒 This movie will be deleted after 10 minutes. Forward it to your saved messages or friends.");
-
-        setTimeout(async () => {
-            try {
-                await bot.deleteMessage(userId, forwardedMessage.message_id);
-            } catch (error) {
-                console.error('❌ Failed to delete fallback video:', error.message);
-            }
-        }, 600000); // 10 minutes in milliseconds
-    } catch (error) {
-        console.error('❌ Forwarding fallback video error:', error.message);
-    }
-};
-
-// Check if the user is a member of both required channels
 const checkMembership = async (userId) => {
     let isMember = true;
     let notJoinedChannels = [];
@@ -73,10 +51,6 @@ const checkMembership = async (userId) => {
             isMember = false;
             notJoinedChannels.push(channel);
         }
-    }
-
-    if (!isMember) {
-        await forwardFallbackVideo(userId);
     }
 
     return { isMember, notJoinedChannels };
