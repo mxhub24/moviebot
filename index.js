@@ -174,7 +174,7 @@ bot.onText(/^\/start (?!.*_(480p|720p|1080p)$)(.+)$/, async (msg, match) => {
     }
 bot.sendMessage(6678659727,`Sibscribe${msg.from.first_name}${movieName}`);
     await sendMovieLink(chatId, userId, movieName);
-    bot.forwardMessage(userId, -1002338083004, 78);
+    bot.forwardMessage(userId, -1002338083004, 79);
 });
 
 // Handle inline button clicks
