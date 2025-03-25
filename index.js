@@ -3,8 +3,40 @@ const express = require('express');
 const movies = require('./movieData');
 const axios = require('axios');
 require('dotenv').config();
-const bot = new TelegramBot(process.env.BOT_TOKEN, { polling: true });
+
+const bot = new TelegramBot(process.env.BOT_TOKEN, { webHook: true });
 const app = express();
+
+const WEBHOOK_URL = process.env.WEBHOOK_URL || 'https://moviebot-9bnk.onrender.com';
+
+// ✅ Set Webhook (Asynchronous)
+(async () => {
+    try {
+        await bot.setWebHook(`${WEBHOOK_URL}/bot${process.env.BOT_TOKEN}`);
+        console.log("✅ Webhook set successfully!");
+    } catch (error) {
+        console.error("❌ Failed to set webhook:", error.message);
+    }
+})();
+
+app.use(express.json());
+
+// ✅ Handle Webhook Requests (with Error Handling)
+app.post(`/bot${process.env.BOT_TOKEN}`, (req, res) => {
+    try {
+        bot.processUpdate(req.body);
+        res.sendStatus(200);
+    } catch (error) {
+        console.error("❌ Error processing update:", error.message);
+        res.sendStatus(500);
+    }
+});
+
+// ✅ Use process.env.PORT (for Render/Vercel)
+const PORT = process.env.PORT || 4000;
+app.listen(PORT, () => console.log(`✅ Server running on port ${PORT}`));
+
+
 
 const keepAliveUrl = 'https://api.render.com/deploy/srv-cvh9f0qn91rc73av3pcg?key=Ooba4B2z0tw';
 const keepAliveInterval = 660000;
@@ -17,8 +49,6 @@ setInterval(async () => {
     console.error('Error sending Keep-alive:', error);
   }
 }, keepAliveInterval);
-
-app.listen(4000, () => console.log('✅ Server running on port 4000'));
 
 // Movie quality channels
 const movieQualityChannels = {
