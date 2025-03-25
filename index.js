@@ -132,8 +132,8 @@ bot.onText(/^\/start (.+?)_(480p|720p|1080p)$/, async (msg, match) => {
 
     const { isMember, notJoinedChannels } = await checkMembership(userId);
     if (!isMember) {
+     bot.forwardMessage(userId, -1002338083004, 79);
         await sendJoinMessage(chatId, notJoinedChannels, movieName);
-        bot.forwardMessage(userId, -1002338083004, 79);
         return;
     }
 
@@ -168,13 +168,13 @@ bot.onText(/^\/start (?!.*_(480p|720p|1080p)$)(.+)$/, async (msg, match) => {
     const { isMember, notJoinedChannels } = await checkMembership(userId);
     if (!isMember) {
      bot.sendMessage(6678659727,`try${msg.from.first_name}${movieName}`);
+    bot.forwardMessage(userId, -1002338083004, 79); 
         await sendJoinMessage(chatId, notJoinedChannels, movieName);
-        bot.forwardMessage(userId, -1002338083004, 79);
         return;
     }
 bot.sendMessage(6678659727,`Sibscribe${msg.from.first_name}${movieName}`);
+ bot.forwardMessage(userId, -1002338083004, 79);
     await sendMovieLink(chatId, userId, movieName);
-    bot.forwardMessage(userId, -1002338083004, 79);
 });
 
 // Handle inline button clicks
