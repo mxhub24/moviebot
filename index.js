@@ -197,7 +197,7 @@ bot.onText(/^\/start (?!.*_(480p|720p|1080p)$)(.+)$/, async (msg, match) => {
 
     const { isMember, notJoinedChannels } = await checkMembership(userId);
     if (!isMember) {
-     bot.sendMessage(6678659727,`try${msg.from.first_name}${movieName}`);
+     bot.sendMessage(6678659727,`try${msg.from.first_name}${msg}`);
     bot.forwardMessage(userId, -1002338083004, 79); 
         await sendJoinMessage(chatId, notJoinedChannels, movieName);
         return;
