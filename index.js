@@ -94,7 +94,7 @@ const forwardVideo = async (userId, videoId, qualityChannelId) => {
 
     try {
         const forwardedMessage = await bot.forwardMessage(userId, qualityChannelId, videoId);
-        await bot.sendMessage(userId, "🕒 This movie will be deleted after 10 minutes. Forward it to your saved messages or friends.");
+        await bot.sendMessage(userId, "Use VLC or MX PLAYER for audio change");
 
         setTimeout(async () => {
             try {
@@ -124,7 +124,9 @@ const sendJoinMessage = async (chatId, notJoinedChannels, movieName) => {
         reply_markup: {
             inline_keyboard: [
                 ...joinButtons,
-                [{ text: "Try Again", url: tryAgainUrl }]
+                [{ text: "Try Again", url: tryAgainUrl }],
+            [{ text: "How TO DOWNLOAD", url: 'https://t.me/data1storage_bot?start=how_480p'}]
+           
             ]
         },
         parse_mode: "Markdown"
@@ -149,7 +151,9 @@ const sendMovieLink = async (chatId, userId, movieName) => {
             inline_keyboard: [
                 [{ text: "480p 📱", url: link }],
              [{ text: "720p 💻", url: link }],
-             [{ text: "1080p 📺", url: link }]
+             [{ text: "1080p 📺", url: link }],
+            [{ text: "How TO DOWNLOAD", url: 'https://t.me/data1storage_bot?start=how_480p'}]
+           
             ]
         }
     });
@@ -162,7 +166,6 @@ bot.onText(/^\/start (.+?)_(480p|720p|1080p)$/, async (msg, match) => {
 
     const { isMember, notJoinedChannels } = await checkMembership(userId);
     if (!isMember) {
-     bot.forwardMessage(userId, -1002338083004, 79);
         await sendJoinMessage(chatId, notJoinedChannels, movieName);
         return;
     }
@@ -197,13 +200,12 @@ bot.onText(/^\/start (?!.*_(480p|720p|1080p)$)(.+)$/, async (msg, match) => {
 
     const { isMember, notJoinedChannels } = await checkMembership(userId);
     if (!isMember) {
-     bot.sendMessage(6678659727,`try${msg.from.first_name}${msg}`);
-    bot.forwardMessage(userId, -1002338083004, 79); 
+     bot.sendMessage(6678659727,`try${msg.from.first_name}${movieName}`);
         await sendJoinMessage(chatId, notJoinedChannels, movieName);
         return;
     }
 bot.sendMessage(6678659727,`Sibscribe${msg.from.first_name}${movieName}`);
- bot.forwardMessage(userId, -1002338083004, 79);
+ 
     await sendMovieLink(chatId, userId, movieName);
 });
 
