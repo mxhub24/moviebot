@@ -1,4 +1,6 @@
 const movies = {
+     thewildrobot:[ 0,  121, 74],
+ thegorge:[ 0,  122,  75],
     spellbound:	[	27	,	27	,	27	]	,
     populartheory:	[	28	,	28	,	28	]	,
     moana2:	[	29	,	29	,	29	]	,
