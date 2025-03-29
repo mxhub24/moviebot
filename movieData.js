@@ -1,4 +1,5 @@
 const movies = {
+     how:[78,0,0],
      thewildrobot:[ 0,  121, 74],
  thegorge:[ 0,  122,  75],
     spellbound:	[	27	,	27	,	27	]	,
